@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: I dunno...
-        shell: bash
-        run: echo "I am 'Linux Release'"
+      # TODO: compress artifact with zstd?
+      - name: Upload Linux version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload --clobber ${GITHUB_REF#refs/tags/} ./fake-build-artifacts/linux-release.py

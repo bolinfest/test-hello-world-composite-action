@@ -1,6 +1,7 @@
 name: aggregate-executables
 
 on:
+  # Can we trigger on the "latest" tag being changed or some other tag?
   workflow_run:
     workflows: [Linux Release, macOS Release]
     types:
@@ -11,6 +12,10 @@ jobs:
     name: Aggregate the executables
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # Need an optional way to derive the "tag" used for the release, which
+    # might not be the same as the Git tag (e.g., ci/tag-name.sh).
+    #
+    # GITHUB_ACTION_REF seems useful ("v12" is an example)
     steps:
       - uses: bolinfest/hello-world-composite-action@v12
         with:
