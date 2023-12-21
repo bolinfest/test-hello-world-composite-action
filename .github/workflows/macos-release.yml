@@ -19,8 +19,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if ! gh release view ${{ steps.vars.outputs.release }}; then
+            echo "Here I am"
             gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
           fi
+        shell: bash
       - name: Upload macOS version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
