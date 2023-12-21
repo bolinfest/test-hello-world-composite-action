@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # TODO: compress artifact with zstd?
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Upload Linux version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
