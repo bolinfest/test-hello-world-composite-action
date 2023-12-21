@@ -3,3 +3,4 @@
 gh api -X GET /repos/bolinfest/test-hello-world-composite-action/contents/.github/workflows/main.yml -H "Accept: application/vnd.github.raw" -F ref=b728b91c3d1e22eff5eb05862dbbbcd8784c25f4
 
 gh api -X GET /repos/bolinfest/test-hello-world-composite-action/contents/.github/workflows/main.yml -H "Accept: application/vnd.github.raw" -F ref=cf0e459880f164282157eb01e30c1a00f0963fe0
+gh api -X GET https://api.github.com/repos/bolinfest/test-hello-world-composite-action/contents/.github/workflows/main.yml -H "Accept: application/vnd.github.raw" -F ref=cf0e459880f164282157eb01e30c1a00f0963fe0
