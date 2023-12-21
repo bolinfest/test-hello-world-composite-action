@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+      - name: Create release
+        run: VERSION=${GITHUB_REF#refs/tags/} gh release view "$VERSION" || gh release create --title "$VERSION" "$VERSION"
       - name: Upload macOS version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
