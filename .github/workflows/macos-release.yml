@@ -13,13 +13,12 @@ jobs:
         uses: actions/checkout@v3
       - name: Define release identifier
         id: vars
-        run: echo "::set-output name=release::${GITHUB_REF#refs/tags/}"
+        run: echo "release=${GITHUB_REF#refs/tags/}" >> $GITHUB_STATE
       - name: Check or create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if ! gh release view ${{ steps.vars.outputs.release }}; then
-            echo "Here I am"
             gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
           fi
         shell: bash
