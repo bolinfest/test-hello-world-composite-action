@@ -14,6 +14,8 @@ jobs:
       - name: Define release identifier
         id: vars
         run: echo "release=${GITHUB_REF#refs/tags/}" >> $GITHUB_STATE
+      - name: sanity check
+        run: echo "START ${{ steps.vars.outputs.release }} END"
       - name: Check or create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
