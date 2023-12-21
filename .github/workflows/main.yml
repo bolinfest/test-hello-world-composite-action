@@ -1,21 +1,20 @@
-on: [push]
+name: aggregate-executables
+
+on:
+  workflow_run:
+    workflows: [Linux Release, macOS Release]
+    types:
+      - completed
 
 jobs:
-  hello_world_job:
+  aggregate_executables_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Aggregate the executables
     steps:
-      - uses: actions/checkout@v4
-      - id: foo
-        uses: bolinfest/hello-world-composite-action@v2
+      - uses: bolinfest/hello-world-composite-action@v3
         with:
-          who-to-greet: 'Lester the Tester'
-          platforms:
-            linux-x86_64:
-              propA: 'propA'
-              propB: 'propB'
-            macos-x86_64:
-              propC: 'propC'
-              propD: 'propD'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-        shell: bash
+          path-to-config: '.github/workflows/executables.json'
+          branch: ${{ github.event.workflow_run.head_branch }}
+      # - uses: actions/checkout@v4
+      # - run: echo random-number ${{ steps.foo.outputs.random-number }}
+      #   shell: bash
