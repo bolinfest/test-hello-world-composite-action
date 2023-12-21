@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Aggregate the executables
     steps:
-      - uses: bolinfest/hello-world-composite-action@v4
+      - uses: bolinfest/hello-world-composite-action@v5
         with:
           path-to-config: '.github/workflows/executables.json'
           branch: ${{ github.event.workflow_run.head_branch }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       # - uses: actions/checkout@v4
       # - run: echo random-number ${{ steps.foo.outputs.random-number }}
       #   shell: bash
