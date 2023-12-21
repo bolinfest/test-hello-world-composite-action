@@ -12,6 +12,8 @@ jobs:
       # TODO: compress artifact with zstd?
       - name: Checkout Code
         uses: actions/checkout@v3
+      - name: Debug VERSION
+        run: VERSION=${GITHUB_REF#refs/tags/} echo "$VERSION"
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
