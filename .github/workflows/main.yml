@@ -17,7 +17,9 @@ jobs:
     #
     # GITHUB_ACTION_REF seems useful ("v12" is an example)
     steps:
-      - uses: bolinfest/hello-world-composite-action@v13
+      - uses: bolinfest/hello-world-composite-action@v14
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-config: '.github/workflows/executables.json'
           branch: ${{ github.event.workflow_run.head_branch }}
