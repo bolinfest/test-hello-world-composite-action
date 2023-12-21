@@ -9,12 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # TODO: compress artifact with zstd?
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Define release identifier
         id: vars
-        run: echo "::set-output name=release::${GITHUB_REF#refs/tags/}"
+        run: echo "release=${GITHUB_REF#refs/tags/}" >> $GITHUB_STATE
       - name: Check or create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -22,11 +21,9 @@ jobs:
           if ! gh release view ${{ steps.vars.outputs.release }}; then
             gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
           fi
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release view ${{ steps.vars.outputs.release }} || gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
+        shell: bash
       - name: Upload Linux version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # TODO: compress artifact with zstd?
         run: gh release upload --clobber ${GITHUB_REF#refs/tags/} ./fake-build-artifacts/linux-release.py
