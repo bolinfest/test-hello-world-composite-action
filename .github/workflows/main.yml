@@ -8,10 +8,11 @@ on:
 
 jobs:
   aggregate_executables_job:
-    runs-on: ubuntu-latest
     name: Aggregate the executables
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: bolinfest/hello-world-composite-action@v10
+      - uses: bolinfest/hello-world-composite-action@v11
         with:
           path-to-config: '.github/workflows/executables.json'
           branch: ${{ github.event.workflow_run.head_branch }}
