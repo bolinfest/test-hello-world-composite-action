@@ -12,10 +12,13 @@ jobs:
       # TODO: compress artifact with zstd?
       - name: Checkout Code
         uses: actions/checkout@v3
+      - name: Define release identifier
+        id: vars
+        run: echo "::set-output name=release::${GITHUB_REF#refs/tags/}"
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: VERSION=${GITHUB_REF#refs/tags/} && gh release view "$VERSION" || gh release create --title "$VERSION" "$VERSION"
+        run: gh release view ${{ steps.vars.outputs.release }} || gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
       - name: Upload Linux version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
