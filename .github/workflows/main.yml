@@ -17,11 +17,10 @@ jobs:
     #
     # GITHUB_ACTION_REF seems useful ("v12" is an example)
     steps:
-      - uses: bolinfest/hello-world-composite-action@v12
+      - uses: bolinfest/hello-world-composite-action@v13
         with:
           path-to-config: '.github/workflows/executables.json'
           branch: ${{ github.event.workflow_run.head_branch }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       # - uses: actions/checkout@v4
       # - run: echo random-number ${{ steps.foo.outputs.random-number }}
       #   shell: bash
