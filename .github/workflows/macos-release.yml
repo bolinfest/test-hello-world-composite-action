@@ -25,4 +25,4 @@ jobs:
       - name: Upload macOS version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload --clobber ${GITHUB_REF#refs/tags/} ./fake-build-artifacts/macos-release.py
+        run: gh release upload --clobber ${{ steps.vars.outputs.release }} ./fake-build-artifacts/macos-release.py

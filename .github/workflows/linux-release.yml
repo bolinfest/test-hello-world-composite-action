@@ -26,4 +26,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # TODO: compress artifact with zstd?
-        run: gh release upload --clobber ${GITHUB_REF#refs/tags/} ./fake-build-artifacts/linux-release.py
+        run: gh release upload --clobber ${{ steps.vars.outputs.release }} ./fake-build-artifacts/linux-release.py
