@@ -14,10 +14,13 @@ jobs:
       - name: Define release identifier
         id: vars
         run: echo "::set-output name=release::${GITHUB_REF#refs/tags/}"
-      - name: Create release
+      - name: Check or create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release view ${{ steps.vars.outputs.release }} || gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
+        run: |
+          if ! gh release view ${{ steps.vars.outputs.release }}; then
+            gh release create --title ${{ steps.vars.outputs.release }} ${{ steps.vars.outputs.release }}
+          fi
       - name: Upload macOS version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
