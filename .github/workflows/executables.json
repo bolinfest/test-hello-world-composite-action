@@ -1,6 +1,14 @@
 {
   "platforms": {
-    "linux-x86_64": {},
-    "macos-x86_64": {}
+    "linux-x86_64": {
+      "matcher": {
+        "name": "linux-release.py"
+      }
+    },
+    "macos-x86_64": {
+      "matcher": {
+        "name_regex": "^macos-"
+      }
+    }
   }
 }

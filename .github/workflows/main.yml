@@ -12,14 +12,10 @@ jobs:
     name: Aggregate the executables
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    # Need an optional way to derive the "tag" used for the release, which
-    # might not be the same as the Git tag (e.g., ci/tag-name.sh).
-    #
-    # GITHUB_ACTION_REF seems useful ("v12" is an example)
     steps:
-      - uses: bolinfest/hello-world-composite-action@v15
+      - uses: bolinfest/hello-world-composite-action@v16
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-config: '.github/workflows/executables.json'
-          branch: ${{ github.event.workflow_run.head_branch }}
+          tag: ${{ github.event.workflow_run.head_branch }}
