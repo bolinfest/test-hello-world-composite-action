@@ -1,5 +1,5 @@
 {
-  "output_file": "manifest.jsonc",
+  "release_filename": "manifest.jsonc",
   "platforms": {
     "linux-x86_64": {
       "matcher": {
