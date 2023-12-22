@@ -8,7 +8,7 @@
     },
     "macos-x86_64": {
       "matcher": {
-        "name_regex": "^macos-",
+        "name_regex": "^macos-"
       },
       "hash": "sha256",
       "path": "macos-release.py"
