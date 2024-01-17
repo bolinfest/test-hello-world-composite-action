@@ -17,7 +17,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path-to-config: '.github/workflows/executables.json'
+          path-to-config: .github/workflows/executables.json
           tag: ${{ github.event.workflow_run.head_branch }}
       - name: Verify file was written
         run: cat "${{ github.workspace }}/manifest.jsonc"
