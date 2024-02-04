@@ -12,6 +12,12 @@
           "hash": "sha256",
           "format": null,
           "path": "macos-release.py"
+        },
+        "macos-aarch64": {
+          "regex": "^macos-",
+          "hash": "sha256",
+          "format": null,
+          "path": "macos-release.py"
         }
       }
     }
