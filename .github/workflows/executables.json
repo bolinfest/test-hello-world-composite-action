@@ -1,18 +1,17 @@
 {
-  "release_filename": "manifest.jsonc",
-  "platforms": {
-    "linux-x86_64": {
-      "matcher": {
-        "name": "linux-release.py"
-      },
-      "path": "linux-release.py"
-    },
-    "macos-x86_64": {
-      "matcher": {
-        "name_regex": "^macos-"
-      },
-      "hash": "sha256",
-      "path": "macos-release.py"
+  "outputs": {
+    "manifest.jsonc": {
+      "platforms": {
+        "linux-x86_64": {
+          "name": "linux-release.py",
+          "path": "linux-release.py"
+        },
+        "macos-x86_64": {
+          "regex": "^macos-",
+          "hash": "sha256",
+          "path": "macos-release.py"
+        }
+      }
     }
   }
 }
