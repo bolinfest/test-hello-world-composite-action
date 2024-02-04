@@ -4,11 +4,13 @@
       "platforms": {
         "linux-x86_64": {
           "name": "linux-release.py",
+          "format": null,
           "path": "linux-release.py"
         },
         "macos-x86_64": {
           "regex": "^macos-",
           "hash": "sha256",
+          "format": null,
           "path": "macos-release.py"
         }
       }
